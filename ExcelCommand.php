@@ -76,7 +76,7 @@ class ExcelCommand extends ContainerAwareCommand
         $dataarry = array();
         $j = 1;
         foreach ($objWorksheet->getRowIterator() as $row) {
-            if($j > 1 && $j < 4){
+            if($j > 1 && $j < 7){
                 $cellIterator = $row->getCellIterator();
                 $k = 1;
                 $instancestring= "";
@@ -134,9 +134,22 @@ class ExcelCommand extends ContainerAwareCommand
 
                 //for employer
                        $dataarry["5289e934a59a6"] = "528a0ae3249d2";
+                $form = $em->getRepository('HrisFormBundle:Form')->find("5");
+                $orgunit = $em->getRepository('HrisOrganisationunitBundle:Organisationunit')->findOneBy(array('uid' => "532057ec1c331"));
+                $entity = new Record();
+                $entity->setValue($dataarry);
+                $entity->setForm($form);
+                $entity->setInstance($instance);
+                $entity->setOrganisationunit($orgunit);
+                $entity->setUsername("admin");
+                $entity->setComplete(True);
+                $entity->setCorrect(True);
+                $entity->setHashistory(False);
+                $entity->setHastraining(False);
 
+                $em->getManager()->persist($entity);
+                $em->getManager()->flush();
 
-                print_r($dataarry);
             }
             $j++;
         }
