@@ -14,3 +14,6 @@ How To use
  $phpExcelObject = $this->getContainer()->get('phpexcel')->createPHPExcelObject('your excel path here');
  
  run the command  php app/console demo:fill
+ 
+ check last five column in database...
+ 
