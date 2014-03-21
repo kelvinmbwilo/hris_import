@@ -28,7 +28,7 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 //use Liuggio\ExcelBundle\LiuggioExcelBundle;
 use DateTime;
 
-class NewsletterCommand extends ContainerAwareCommand
+class ExcelCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
@@ -41,6 +41,8 @@ class NewsletterCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+
+
         $em = $this->getContainer()->get('doctrine');
 
         $formEntity = $em->getRepository('HrisFormBundle:Form')->find('5');
